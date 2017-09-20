@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cai.mall.mapper.TypeMapper">
+
+	<resultMap id="typeResultMap" type="type">
+		<id property="id" column="id" />
+		<result property="typename" column="typename"/>
+		<result property="status" column="status"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+	</resultMap>
+	
+	<sql id="mall_type_filed">
+		id, typename, status, create_time, modify_time
+	</sql>
+	
+	<select id="getTypeById" resultMap="typeResultMap">
+		select <include refid="mall_type_filed"></include>
+		from mall_type
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="typeId != null">
+				and id=#{typeId}
+			</if>
+			
+			<if test="typename != null">
+				and typename=#{typename}
+			</if>
+		</trim>
+	</select>
+	
+	
+	<select id="listType" resultMap="typeResultMap">
+		select <include refid="mall_type_filed"></include>
+		from mall_type where status=1;
+	
+	</select>
+</mapper>
+

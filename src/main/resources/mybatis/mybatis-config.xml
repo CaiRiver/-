@@ -1,0 +1,16 @@
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.cai.mall.domain.Type" alias="type"/>
+		<typeAlias type="com.cai.mall.domain.Commodity" alias="commodity"/>
+		<typeAlias type="com.cai.mall.domain.User" alias="user"/>
+		<typeAlias type="com.cai.mall.domain.ShoppingTrolley" alias="cart"/>
+		<typeAlias type="com.cai.mall.domain.Address" alias="address"/>
+		<typeAlias type="com.cai.mall.domain.Order" alias="order"/>
+		<typeAlias type="com.cai.mall.domain.OrderDetail" alias="orderDetail"/>
+	</typeAliases>
+
+</configuration>

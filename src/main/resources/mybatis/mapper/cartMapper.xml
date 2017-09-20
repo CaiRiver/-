@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cai.mall.mapper.CartMapper">
+
+	<resultMap id="cartResultMap" type="cart">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id"/>
+		<result property="commodityId" column="commodity_id"/>
+		<result property="purchaseNum" column="purchase_num"/>
+		<result property="status" column="status"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+	</resultMap>
+	
+	<sql id="mall_cart_filed">
+		id, user_id, commodity_id, purchase_num, status, create_time, modify_time
+	</sql>
+	
+	<insert id="addCom" useGeneratedKeys="true" keyProperty="id">
+		insert into mall_shopping_trolley (user_id, commodity_id, purchase_num, status, create_time, modify_time)
+		value (#{userId}, #{commodityId}, #{purchaseNum}, #{status}, now(), now())
+	</insert>
+	
+	<!-- <select id="ListCart" resultMap="cartResultMap">
+		select <include refid="mall_cart_filed"></include>
+		from mall_shopping_trolley
+		where user_id=#{userId}
+		limit #{offset}, #{pageNum}
+	</select> -->
+	
+	
+	<select id="countCart" resultType="int">
+		select count(user_id)
+		from mall_shopping_trolley
+		where user_id=#{userId} 
+	</select>
+	
+	<select id="listCart" resultMap="cartResultMap">
+		select <include refid="mall_cart_filed"></include>
+		from mall_shopping_trolley
+		where user_id=#{userId}
+	</select>
+</mapper>
+

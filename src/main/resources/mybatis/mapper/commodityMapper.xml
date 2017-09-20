@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cai.mall.mapper.CommodityMapper">
+
+	<resultMap id="commodityResultMap" type="commodity">
+		<id property="id" column="id" />
+		<result property="typeId" column="type_id"/>
+		<result property="name" column="name"/>
+		<result property="unitPrice" column="unit_price"/>
+		<result property="inventory" column="inventory"/>
+		<result property="comDesc" column="com_desc"/>
+		<result property="status" column="status"/>
+		<result property="soldNum" column="sold_num"/>
+		<result property="picture" column="picture"/>
+		<result property="createTime" column="create_time"/>
+		<result property="modifyTime" column="modify_time"/>
+	</resultMap>
+	
+	<sql id="mall_commodity_filed">
+		id, type_id, name, unit_price, inventory, com_desc, status, sold_num, picture, create_time, modify_time
+	</sql>
+		
+	<select id="listCom" resultMap="commodityResultMap">
+		select <include refid="mall_commodity_filed"></include>
+		from mall_commodity where type_id=#{typeId} and status=1;
+	
+	</select>
+	
+	<select id="getComByComId" resultMap="commodityResultMap">
+		select <include refid="mall_commodity_filed"></include>
+		from mall_commodity where id=#{comId};
+	</select>
+</mapper>
+

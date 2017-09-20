@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cai.mall.mapper.ProvinceAndCityMapper">
+	<select id="listProvince" resultType="java.util.HashMap">
+		select code, name from mall_province;
+	</select>
+	
+	<select id="listCity" resultType="java.util.HashMap">
+		select code, name from mall_city where provincecode=#{provinceCode};
+	</select>
+	
+	<select id="listArea" resultType="java.util.HashMap">
+		select code, name from mall_area where citycode=#{cityCode}; 
+	</select>
+	
+	<select id="getProvinceByCode" resultType="String">
+		select name from mall_province where code=#{provinceCode}
+	</select>
+	
+	<select id="getCityByCode" resultType="String">
+		select name from mall_city where code=#{cityCode}
+	</select>
+	
+	<select id="getAreaByCode" resultType="String">
+		select name from mall_area where code=#{areaCode}
+	</select>
+	
+</mapper>
+
